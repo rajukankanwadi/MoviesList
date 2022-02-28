@@ -9,16 +9,16 @@ import UIKit
 
 class MovieListTableViewCell: UITableViewCell {
 
+    static let reuseIdentifier = "MovieListTableViewCell"
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overViewLabel: UILabel!
     @IBOutlet weak var watchListButton: UIButton!
     @IBOutlet weak var popularityLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     
-    var didClickWatchList: ((Movie?)->())?
     var movie: Movie?
     
-    static let reuseIdentifier = "MovieListTableViewCell"
     override func awakeFromNib() {
         super.awakeFromNib()
         watchListButton.setImage(UIImage(systemName: "star"), for: .normal)
@@ -41,7 +41,6 @@ class MovieListTableViewCell: UITableViewCell {
             currMovie.watchListed = !currMovie.watchListed
             let image =  currMovie.watchListed ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
             watchListButton.setImage(image, for: .normal)
-            didClickWatchList?(movie)
         }
     }
     
